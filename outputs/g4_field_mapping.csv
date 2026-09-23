@@ -1,0 +1,12 @@
+scenario_field,supplied_by_description,source
+metadata.scenario_id,yes,scene.name
+metadata.map,yes,scene.location
+length / metadata.ts,yes,scene.duration_s at the simulator's 10 Hz
+tracks.ego.state.valid,yes,every step of the scene's duration
+tracks.ego.state.velocity,partly,speed from the timeline's speed labels within parameters.ego_speed_mps
+tracks.ego.state.heading,partly,"from the steering labels, at a nominal turn angle the description does not carry"
+tracks.ego.state.position,partly,integrated from speed and heading; the STARTING pose is not in the description
+tracks.ego.state.length/width/height,no,taken from the log conversion
+tracks.<other road users>,no,"the description gives categories, counts, and range and speed intervals, never a position or a track"
+"map_features (lanes, lines, edges, crossings)",no,"the description gives road statistics (intersection and lane fractions), not geometry; nuScenes ships no OpenDRIVE"
+dynamic_map_states (signal states),no,"nuScenes records no signal state at all, so neither does the log conversion"

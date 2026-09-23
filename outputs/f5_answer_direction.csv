@@ -1,0 +1,11 @@
+measure,count,of,rate,ci_lo,ci_hi
+count: model under-counts,269,296,0.9088,,
+count: model over-counts,14,296,0.0473,,
+count: exact,13,296,0.0439,,
+count: model answers 0,151,296,0.5101,,
+count: reference answers 0,11,296,0.0372,,
+exist: model says yes,95,433,0.2194,,
+exist: reference says yes,249,433,0.5751,,
+explicit 'cannot see' answers,45,1471,0.0306,,
+answers outside the answer vocabulary,195,1471,0.1326,,
+"accuracy, ego-front minus ego-behind (UNDERPOWERED)",116,123,-0.0259,-0.1603,0.1011

@@ -1,0 +1,17 @@
+variant,legacy_tag,new_tag,prevalence_legacy,prevalence_new,f1_legacy,f1_new,delta_new_minus_legacy
+v1_presence,has_parked_vehicle,has_vehicle,0.997,0.93,0.945,0.969,0.024
+v1_presence,has_construction,construction_object,0.619,0.323,0.419,0.654,0.235
+v1_presence,has_pedestrian,has_pedestrian,0.876,0.602,0.453,0.597,0.145
+v1_presence,requires_slowdown,is_decelerating,0.0,0.189,0.0,0.0,0.0
+v1_presence,turn_left,is_turn_left,0.0,0.121,0.0,0.21,0.21
+v1_presence,following_vehicle,lead_vehicle,0.0,0.5,0.0,0.711,0.711
+v2_gated,has_parked_vehicle,has_vehicle,0.925,0.93,0.918,0.969,0.052
+v2_gated,has_construction,construction_object,0.428,0.323,0.532,0.654,0.121
+v2_gated,has_pedestrian,has_pedestrian,0.513,0.602,0.567,0.597,0.03
+v2_gated,requires_slowdown,is_decelerating,0.0,0.189,0.0,0.0,0.0
+v2_gated,turn_left,is_turn_left,0.0,0.121,0.0,0.21,0.21
+v2_gated,following_vehicle,lead_vehicle,0.65,0.5,0.619,0.711,0.092
+v3_fair,has_parked_vehicle,has_vehicle,0.997,0.93,0.945,0.969,0.024
+v3_fair,has_construction,construction_object,0.616,0.323,0.42,0.654,0.233
+v3_fair,has_pedestrian,has_pedestrian,0.876,0.602,0.453,0.597,0.145
+v3_fair,following_vehicle,lead_vehicle,0.997,0.5,0.732,0.711,-0.02

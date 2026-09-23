@@ -1,0 +1,8 @@
+template_type,n,accuracy,accuracy_lenient,majority_answer,baseline,delta,beats_baseline
+comparison,175,0.5086,0.5086,no,0.5086,0.0,False
+count,296,0.0439,0.0439,3,0.1655,-0.1216,False
+exist,433,0.5543,0.5543,yes,0.5751,-0.0208,False
+object,321,0.2212,0.2523,truck,0.2274,-0.0062,False
+status,246,0.2358,0.2439,parked,0.248,-0.0122,False
+OVERALL,1471,0.3202,0.3283,'yes' everywhere,0.2277,0.0925,True
+OVERALL vs type-aware,1471,0.3202,0.3283,each type's own majority,0.3542,-0.034,False

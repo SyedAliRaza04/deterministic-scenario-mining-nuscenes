@@ -1,0 +1,168 @@
+{
+  "reference": {
+    "regex": "lane\\s*chang|chang\\w*\\s+lane",
+    "scenes": [
+      "scene-0028",
+      "scene-0062",
+      "scene-0101",
+      "scene-0107",
+      "scene-0238",
+      "scene-0273",
+      "scene-0292",
+      "scene-0347",
+      "scene-0377",
+      "scene-0441",
+      "scene-0563",
+      "scene-0641",
+      "scene-0711",
+      "scene-0712",
+      "scene-0744",
+      "scene-0803",
+      "scene-0812",
+      "scene-0815",
+      "scene-0854",
+      "scene-0962",
+      "scene-0969",
+      "scene-1002",
+      "scene-1078",
+      "scene-1095"
+    ],
+    "ego_only": [
+      "scene-0028",
+      "scene-0062",
+      "scene-0101",
+      "scene-0238",
+      "scene-0273",
+      "scene-0292",
+      "scene-0347",
+      "scene-0377",
+      "scene-0441",
+      "scene-0563",
+      "scene-0641",
+      "scene-0711",
+      "scene-0712",
+      "scene-0744",
+      "scene-0812",
+      "scene-0815",
+      "scene-0854",
+      "scene-0962",
+      "scene-0969",
+      "scene-1002",
+      "scene-1078",
+      "scene-1095"
+    ],
+    "excluded_non_ego": [
+      "scene-0107",
+      "scene-0803"
+    ],
+    "base_rate": 0.02824,
+    "n_scenes": 850
+  },
+  "variants": {
+    "frozen (D-033)": {
+      "parameters": {
+        "token_gap_kf": 0,
+        "sep_lateral": false
+      },
+      "events": 66,
+      "scenes": 60,
+      "positive_keyframes": 499,
+      "prevalence_pct": 1.461,
+      "recall_events": "14/24",
+      "recall_pct": 58.3,
+      "recall_ego_only": "14/22",
+      "description_hit_rate_pct": 23.3,
+      "enrichment_over_base": 8.26,
+      "missed": [
+        "scene-0028",
+        "scene-0107",
+        "scene-0377",
+        "scene-0441",
+        "scene-0744",
+        "scene-0803",
+        "scene-0812",
+        "scene-0854",
+        "scene-0969",
+        "scene-1002"
+      ]
+    },
+    "sep_lateral only": {
+      "parameters": {
+        "token_gap_kf": 0,
+        "sep_lateral": true
+      },
+      "events": 67,
+      "scenes": 61,
+      "positive_keyframes": 501,
+      "prevalence_pct": 1.467,
+      "recall_events": "14/24",
+      "recall_pct": 58.3,
+      "recall_ego_only": "14/22",
+      "description_hit_rate_pct": 23.0,
+      "enrichment_over_base": 8.13,
+      "missed": [
+        "scene-0028",
+        "scene-0107",
+        "scene-0377",
+        "scene-0441",
+        "scene-0744",
+        "scene-0803",
+        "scene-0812",
+        "scene-0854",
+        "scene-0969",
+        "scene-1002"
+      ]
+    },
+    "gap only": {
+      "parameters": {
+        "token_gap_kf": 4,
+        "sep_lateral": false
+      },
+      "events": 66,
+      "scenes": 60,
+      "positive_keyframes": 499,
+      "prevalence_pct": 1.461,
+      "recall_events": "14/24",
+      "recall_pct": 58.3,
+      "recall_ego_only": "14/22",
+      "description_hit_rate_pct": 23.3,
+      "enrichment_over_base": 8.26,
+      "missed": [
+        "scene-0028",
+        "scene-0107",
+        "scene-0377",
+        "scene-0441",
+        "scene-0744",
+        "scene-0803",
+        "scene-0812",
+        "scene-0854",
+        "scene-0969",
+        "scene-1002"
+      ]
+    },
+    "sep_lateral + gap": {
+      "parameters": {
+        "token_gap_kf": 4,
+        "sep_lateral": true
+      },
+      "events": 75,
+      "scenes": 67,
+      "positive_keyframes": 551,
+      "prevalence_pct": 1.614,
+      "recall_events": "17/24",
+      "recall_pct": 70.8,
+      "recall_ego_only": "17/22",
+      "description_hit_rate_pct": 25.4,
+      "enrichment_over_base": 8.99,
+      "missed": [
+        "scene-0028",
+        "scene-0107",
+        "scene-0441",
+        "scene-0744",
+        "scene-0803",
+        "scene-0854",
+        "scene-0969"
+      ]
+    }
+  }
+}

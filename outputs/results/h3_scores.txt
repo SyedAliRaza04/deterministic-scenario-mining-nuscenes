@@ -1,0 +1,131 @@
+{
+ "n_images": 586,
+ "parse_failure_rate": 0.0,
+ "all": {
+  "traffic_light_present": {
+   "precision": 0.931,
+   "recall": 0.946,
+   "f1": 0.939,
+   "support": 388,
+   "baseline_f1": 0.797,
+   "n_answered": 586
+  },
+  "traffic_sign_present": {
+   "precision": 0.909,
+   "recall": 0.9,
+   "f1": 0.904,
+   "support": 488,
+   "baseline_f1": 0.909,
+   "n_answered": 586
+  },
+  "red_light_visible": {
+   "precision": 0.592,
+   "recall": 0.803,
+   "f1": 0.682,
+   "support": 208,
+   "baseline_f1": 0.0,
+   "n_answered": 586
+  },
+  "yellow_light_visible": {
+   "precision": 0.487,
+   "recall": 0.607,
+   "f1": 0.54,
+   "support": 150,
+   "baseline_f1": 0.0,
+   "n_answered": 586
+  },
+  "green_light_visible": {
+   "precision": 0.864,
+   "recall": 0.874,
+   "f1": 0.869,
+   "support": 254,
+   "baseline_f1": 0.0,
+   "n_answered": 586
+  }
+ },
+ "uniform_view": {
+  "traffic_light_present": {
+   "precision": 0.897,
+   "recall": 0.929,
+   "f1": 0.912,
+   "support": 252,
+   "baseline_f1": 0.718,
+   "n_answered": 450
+  },
+  "traffic_sign_present": {
+   "precision": 0.898,
+   "recall": 0.878,
+   "f1": 0.888,
+   "support": 360,
+   "baseline_f1": 0.889,
+   "n_answered": 450
+  },
+  "red_light_visible": {
+   "precision": 0.533,
+   "recall": 0.762,
+   "f1": 0.627,
+   "support": 126,
+   "baseline_f1": 0.0,
+   "n_answered": 450
+  },
+  "yellow_light_visible": {
+   "precision": 0.103,
+   "recall": 0.786,
+   "f1": 0.182,
+   "support": 14,
+   "baseline_f1": 0.0,
+   "n_answered": 450
+  },
+  "green_light_visible": {
+   "precision": 0.882,
+   "recall": 0.892,
+   "f1": 0.887,
+   "support": 185,
+   "baseline_f1": 0.0,
+   "n_answered": 450
+  }
+ },
+ "state_gt_certain_only": {
+  "traffic_light_present": {
+   "precision": 0.862,
+   "recall": 0.923,
+   "f1": 0.892,
+   "support": 183,
+   "baseline_f1": 0.0,
+   "n_answered": 381
+  },
+  "traffic_sign_present": {
+   "precision": 0.881,
+   "recall": 0.854,
+   "f1": 0.867,
+   "support": 295,
+   "baseline_f1": 0.873,
+   "n_answered": 381
+  },
+  "red_light_visible": {
+   "precision": 0.519,
+   "recall": 0.784,
+   "f1": 0.625,
+   "support": 102,
+   "baseline_f1": 0.0,
+   "n_answered": 381
+  },
+  "yellow_light_visible": {
+   "precision": 0.417,
+   "recall": 0.492,
+   "f1": 0.451,
+   "support": 61,
+   "baseline_f1": 0.0,
+   "n_answered": 381
+  },
+  "green_light_visible": {
+   "precision": 0.879,
+   "recall": 0.885,
+   "f1": 0.882,
+   "support": 131,
+   "baseline_f1": 0.0,
+   "n_answered": 381
+  }
+ },
+ "n_state_gt_certain": 381
+}

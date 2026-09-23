@@ -1,0 +1,913 @@
+{
+  "schema_version": "C6.3",
+  "n_tags": 37,
+  "families": [
+    "ego_maneuver",
+    "interaction",
+    "map_context",
+    "visible_objects"
+  ],
+  "scopes": {
+    "ego": "a fact about the ego vehicle itself",
+    "map_containment": "the ego's own position on the HD map",
+    "map_corridor_30m": "the 30 m x 8 m corridor ahead of the ego, along its heading",
+    "camera_frustum_CAM_FRONT": "only what the CAM_FRONT frustum contains",
+    "world_360": "every annotated agent, whether or not a camera sees it"
+  },
+  "categorical": {
+    "lateral_label": [
+      "going_straight",
+      "turn_left",
+      "turn_right",
+      "u_turn"
+    ],
+    "longitudinal_label": [
+      "cruising",
+      "stationary",
+      "accelerating",
+      "decelerating"
+    ]
+  },
+  "implications": [
+    {
+      "if": "traffic_cone",
+      "then": "construction_object",
+      "because": "a cone is one of the construction categories"
+    },
+    {
+      "if": "barrier",
+      "then": "construction_object",
+      "because": "a barrier is one of the construction categories"
+    },
+    {
+      "if": "moving_vehicle",
+      "then": "has_vehicle",
+      "because": "the attribute test also requires category vehicle.*"
+    },
+    {
+      "if": "parked_vehicle",
+      "then": "has_vehicle",
+      "because": "same"
+    },
+    {
+      "if": "stopped_vehicle",
+      "then": "has_vehicle",
+      "because": "same"
+    },
+    {
+      "if": "large_vehicle",
+      "then": "has_vehicle",
+      "because": "the large categories are all vehicle.*"
+    },
+    {
+      "if": "cyclist",
+      "then": "has_vehicle",
+      "because": "a two-wheeler is annotated as vehicle.bicycle/motorcycle"
+    },
+    {
+      "if": "parked_bicycle",
+      "then": "has_vehicle",
+      "because": "same"
+    },
+    {
+      "if": "vehicle_near",
+      "then": "has_vehicle",
+      "because": "the near tag is the presence tag plus a radius"
+    },
+    {
+      "if": "pedestrian_near",
+      "then": "has_pedestrian",
+      "because": "same"
+    },
+    {
+      "if": "lead_braking",
+      "then": "lead_vehicle",
+      "because": "there must be a lead for it to be braking"
+    },
+    {
+      "if": "cut_in",
+      "then": "lead_vehicle",
+      "because": "an agent inside the corridor makes the corridor non-empty"
+    },
+    {
+      "if": "on_ped_crossing",
+      "then": "ped_crossing_ahead",
+      "because": "the forward corridor starts at u=0, so a polygon containing the ego intersects it"
+    },
+    {
+      "if": "on_stop_line",
+      "then": "stop_line_ahead",
+      "because": "same"
+    },
+    {
+      "if": "at_intersection",
+      "then": "intersection_ahead",
+      "because": "same"
+    }
+  ],
+  "prevalence_measured_on": {
+    "split": "trainval",
+    "n_frames": 34149
+  },
+  "tags": {
+    "is_going_straight": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego steering event of kind 'going_straight' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "YAW_ENTER_DEG_S": 4.0,
+        "YAW_EXIT_DEG_S": 1.5,
+        "MIN_TURN_DEG": 15.0,
+        "U_TURN_DEG": 150.0
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 83.654,
+      "n_positive": 28567,
+      "majority_baseline_pct": 83.654,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_turn_left": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego steering event of kind 'turn_left' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "YAW_ENTER_DEG_S": 4.0,
+        "YAW_EXIT_DEG_S": 1.5,
+        "MIN_TURN_DEG": 15.0,
+        "U_TURN_DEG": 150.0
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 7.813,
+      "n_positive": 2668,
+      "majority_baseline_pct": 92.187,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_turn_right": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego steering event of kind 'turn_right' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "YAW_ENTER_DEG_S": 4.0,
+        "YAW_EXIT_DEG_S": 1.5,
+        "MIN_TURN_DEG": 15.0,
+        "U_TURN_DEG": 150.0
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 8.293,
+      "n_positive": 2832,
+      "majority_baseline_pct": 91.707,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_u_turn": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego steering event of kind 'u_turn' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "YAW_ENTER_DEG_S": 4.0,
+        "YAW_EXIT_DEG_S": 1.5,
+        "MIN_TURN_DEG": 15.0,
+        "U_TURN_DEG": 150.0
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 0.24,
+      "n_positive": 82,
+      "majority_baseline_pct": 99.76,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_cruising": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego speed event of kind 'cruising' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "ACCEL_ENTER_MPS2": 0.6,
+        "ACCEL_EXIT_MPS2": 0.25,
+        "STATIONARY_MPS": 0.5,
+        "TREND_S": 1.5
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 47.899,
+      "n_positive": 16357,
+      "majority_baseline_pct": 52.101,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_stationary": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego speed event of kind 'stationary' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "ACCEL_ENTER_MPS2": 0.6,
+        "ACCEL_EXIT_MPS2": 0.25,
+        "STATIONARY_MPS": 0.5,
+        "TREND_S": 1.5
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 18.993,
+      "n_positive": 6486,
+      "majority_baseline_pct": 81.007,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_accelerating": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego speed event of kind 'accelerating' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "ACCEL_ENTER_MPS2": 0.6,
+        "ACCEL_EXIT_MPS2": 0.25,
+        "STATIONARY_MPS": 0.5,
+        "TREND_S": 1.5
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 16.396,
+      "n_positive": 5599,
+      "majority_baseline_pct": 83.604,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "is_decelerating": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "ego speed event of kind 'decelerating' contains this keyframe",
+      "source_table": "outputs/maneuvers_<split>.parquet",
+      "parameters": {
+        "ACCEL_ENTER_MPS2": 0.6,
+        "ACCEL_EXIT_MPS2": 0.25,
+        "STATIONARY_MPS": 0.5,
+        "TREND_S": 1.5
+      },
+      "decisions": [
+        "D-013",
+        "D-014",
+        "D-016"
+      ],
+      "prevalence_pct": 16.712,
+      "n_positive": 5707,
+      "majority_baseline_pct": 83.288,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "lane_change": {
+      "family": "ego_maneuver",
+      "dtype": "bool",
+      "scope": "ego",
+      "derivation": "the ego crossed to a laterally adjacent, parallel lane centreline (union of a polygon-token flip and a settlement-pair detector, both geometry-confirmed; PRECISION operating point, see L-022)",
+      "source_table": "outputs/lane_change_<split>.parquet",
+      "parameters": {
+        "LC_SEP_MIN_M": 1.8,
+        "LC_SEP_MAX_M": 7.0,
+        "LC_CENTRED_M": 0.9,
+        "LC_LATERAL_RATE_MAX_MPS": 2.0,
+        "LC_MAX_DUR_S": 8.0,
+        "LC_MIN_SPEED_MPS": 2.0,
+        "LC_PARALLEL_DH_DEG": 35.0
+      },
+      "decisions": [
+        "D-033"
+      ],
+      "prevalence_pct": 1.614,
+      "n_positive": 551,
+      "majority_baseline_pct": 98.386,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "on_drivable_area": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a drivable_area polygon",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 99.739,
+      "n_positive": 34060,
+      "majority_baseline_pct": 99.739,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "at_intersection": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a road_segment with is_intersection",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 25.825,
+      "n_positive": 8819,
+      "majority_baseline_pct": 74.175,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "on_lane": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a lane polygon",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 73.475,
+      "n_positive": 25091,
+      "majority_baseline_pct": 73.475,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "on_ped_crossing": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a ped_crossing polygon",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 2.89,
+      "n_positive": 987,
+      "majority_baseline_pct": 97.11,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "on_walkway": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a walkway polygon (QC: must stay ~0%)",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 0.0,
+      "n_positive": 0,
+      "majority_baseline_pct": 100.0,
+      "near_constant": true,
+      "role": "qc_invariant",
+      "scoreable": false
+    },
+    "on_stop_line": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a stop_line polygon",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 17.869,
+      "n_positive": 6102,
+      "majority_baseline_pct": 82.131,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "on_carpark": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_containment",
+      "derivation": "ego position falls inside a carpark_area polygon",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-017",
+        "D-018",
+        "D-019"
+      ],
+      "prevalence_pct": 0.067,
+      "n_positive": 23,
+      "majority_baseline_pct": 99.933,
+      "near_constant": true,
+      "role": "qc_invariant",
+      "scoreable": false
+    },
+    "ped_crossing_ahead": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_corridor_30m",
+      "derivation": "a ped_crossing polygon intersects the forward corridor",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {
+        "AHEAD_RANGE_M": 30.0,
+        "CORRIDOR_HALFWIDTH_M": 4.0
+      },
+      "decisions": [
+        "D-017",
+        "D-020"
+      ],
+      "prevalence_pct": 37.884,
+      "n_positive": 12937,
+      "majority_baseline_pct": 62.116,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "stop_line_ahead": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_corridor_30m",
+      "derivation": "a stop_line polygon intersects the forward corridor",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {
+        "AHEAD_RANGE_M": 30.0,
+        "CORRIDOR_HALFWIDTH_M": 4.0
+      },
+      "decisions": [
+        "D-017",
+        "D-020"
+      ],
+      "prevalence_pct": 58.848,
+      "n_positive": 20096,
+      "majority_baseline_pct": 58.848,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "intersection_ahead": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_corridor_30m",
+      "derivation": "an is_intersection road_segment intersects the forward corridor",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {
+        "AHEAD_RANGE_M": 30.0,
+        "CORRIDOR_HALFWIDTH_M": 4.0
+      },
+      "decisions": [
+        "D-017",
+        "D-020"
+      ],
+      "prevalence_pct": 77.431,
+      "n_positive": 26442,
+      "majority_baseline_pct": 77.431,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "traffic_light_ahead": {
+      "family": "map_context",
+      "dtype": "bool",
+      "scope": "map_corridor_30m",
+      "derivation": "a traffic_light fixture falls in the forward corridor (position only - nuScenes never gives the STATE, F-004)",
+      "source_table": "outputs/map_context_<split>.parquet",
+      "parameters": {
+        "AHEAD_RANGE_M": 30.0,
+        "CORRIDOR_HALFWIDTH_M": 4.0
+      },
+      "decisions": [
+        "D-017",
+        "D-020"
+      ],
+      "prevalence_pct": 16.797,
+      "n_positive": 5736,
+      "majority_baseline_pct": 83.203,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "has_pedestrian": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a human.* box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 51.586,
+      "n_positive": 17616,
+      "majority_baseline_pct": 51.586,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "has_vehicle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a vehicle.* box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 91.189,
+      "n_positive": 31140,
+      "majority_baseline_pct": 91.189,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "parked_vehicle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a vehicle.* box carries the annotated attribute vehicle.parked",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 58.687,
+      "n_positive": 20041,
+      "majority_baseline_pct": 58.687,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "moving_vehicle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a vehicle.* box carries the annotated attribute vehicle.moving",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 63.346,
+      "n_positive": 21632,
+      "majority_baseline_pct": 63.346,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "stopped_vehicle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a vehicle.* box carries the annotated attribute vehicle.stopped",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 31.764,
+      "n_positive": 10847,
+      "majority_baseline_pct": 68.236,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "large_vehicle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a truck / bus / trailer / construction-vehicle box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 56.784,
+      "n_positive": 19391,
+      "majority_baseline_pct": 56.784,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "cyclist": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a bicycle or motorcycle box carries the attribute cycle.with_rider",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 6.369,
+      "n_positive": 2175,
+      "majority_baseline_pct": 93.631,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "parked_bicycle": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a bicycle or motorcycle box carries cycle.without_rider (street furniture, NOT a road user - F-031)",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 8.071,
+      "n_positive": 2756,
+      "majority_baseline_pct": 91.929,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "construction_object": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a barrier, traffic cone or debris box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 29.351,
+      "n_positive": 10023,
+      "majority_baseline_pct": 70.649,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "traffic_cone": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a movable_object.trafficcone box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 19.588,
+      "n_positive": 6689,
+      "majority_baseline_pct": 80.412,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "barrier": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a movable_object.barrier box is in the frustum",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {},
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 18.818,
+      "n_positive": 6426,
+      "majority_baseline_pct": 81.182,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "pedestrian_near": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a human.* box is in the frustum within the near radius",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {
+        "NEAR_RANGE_M": 15.0
+      },
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 10.39,
+      "n_positive": 3548,
+      "majority_baseline_pct": 89.61,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "vehicle_near": {
+      "family": "visible_objects",
+      "dtype": "bool",
+      "scope": "camera_frustum_CAM_FRONT",
+      "derivation": "a vehicle.* box is in the frustum within the near radius",
+      "source_table": "outputs/objects_<split>.parquet",
+      "parameters": {
+        "NEAR_RANGE_M": 15.0
+      },
+      "decisions": [
+        "D-002",
+        "D-022",
+        "D-023",
+        "D-024",
+        "D-025"
+      ],
+      "prevalence_pct": 35.963,
+      "n_positive": 12281,
+      "majority_baseline_pct": 64.037,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "lead_vehicle": {
+      "family": "interaction",
+      "dtype": "bool",
+      "scope": "world_360",
+      "derivation": "nearest vehicle ahead inside the ego lane corridor",
+      "source_table": "outputs/interactions_<split>.parquet",
+      "parameters": {
+        "LEAD_LATERAL_M": 2.5,
+        "LEAD_RANGE_M": 40.0
+      },
+      "decisions": [
+        "D-026",
+        "D-027"
+      ],
+      "prevalence_pct": 26.964,
+      "n_positive": 9208,
+      "majority_baseline_pct": 73.036,
+      "near_constant": false,
+      "role": "scored",
+      "scoreable": true
+    },
+    "lead_braking": {
+      "family": "interaction",
+      "dtype": "bool",
+      "scope": "world_360",
+      "derivation": "that same instance's speed fell faster than the threshold over the trend window",
+      "source_table": "outputs/interactions_<split>.parquet",
+      "parameters": {
+        "LEAD_TREND_S": 1.5,
+        "LEAD_BRAKE_MPS2": -0.6
+      },
+      "decisions": [
+        "D-026",
+        "D-027",
+        "D-029"
+      ],
+      "prevalence_pct": 1.892,
+      "n_positive": 646,
+      "majority_baseline_pct": 98.108,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "cut_in": {
+      "family": "interaction",
+      "dtype": "bool",
+      "scope": "world_360",
+      "derivation": "a moving vehicle entered the corridor, with its lateral velocity pointing inward",
+      "source_table": "outputs/interactions_<split>.parquet",
+      "parameters": {
+        "CUT_IN_LOOKBACK_S": 1.5,
+        "MIN_AGENT_SPEED_MPS": 1.0,
+        "LEAD_LATERAL_M": 2.5
+      },
+      "decisions": [
+        "D-026",
+        "D-027",
+        "D-028"
+      ],
+      "prevalence_pct": 2.428,
+      "n_positive": 829,
+      "majority_baseline_pct": 97.572,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    },
+    "pedestrian_crossing_path": {
+      "family": "interaction",
+      "dtype": "bool",
+      "scope": "world_360",
+      "derivation": "pedestrian ahead, moving toward the centreline, reaching the corridor within the time limit",
+      "source_table": "outputs/interactions_<split>.parquet",
+      "parameters": {
+        "PED_INTERACT_RANGE_M": 20.0,
+        "PED_LATERAL_MPS": 0.5,
+        "PED_TIME_TO_CORRIDOR_S": 4.0
+      },
+      "decisions": [
+        "D-026",
+        "D-027"
+      ],
+      "prevalence_pct": 3.078,
+      "n_positive": 1051,
+      "majority_baseline_pct": 96.922,
+      "near_constant": true,
+      "role": "scored",
+      "scoreable": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+scene_name,location,duration_s,log_path_m,described_path_m,mean_position_error_m,final_position_error_m,final_heading_error_deg,log_on_road_fraction,described_on_road_fraction,log_steps_in_collision,described_steps_in_collision,replay_max_deviation_m,steps_replayed
+scene-0061,singapore-onenorth,19.1,91.3,47.8,27.2,39.2,8.8,1.0,0.576,0,0,0.0,179
+scene-0103,boston-seaport,19.6,117.9,56.5,25.2,63.0,11.9,1.0,0.75,0,33,0.0,178
+scene-0553,boston-seaport,20.1,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0,0,0.0,1
+scene-0655,boston-seaport,20.1,162.9,158.8,4.0,4.2,1.0,1.0,1.0,0,0,0.0,192
+scene-0757,boston-seaport,20.1,27.3,12.3,12.3,15.1,11.6,1.0,1.0,0,28,0.0,63
+scene-0796,singapore-queenstown,19.6,236.9,239.5,4.2,9.2,4.0,1.0,0.418,0,0,0.0,186
+scene-0916,singapore-queenstown,20.1,93.4,92.1,24.4,65.5,84.5,1.0,0.169,0,0,0.0,187
+scene-1077,singapore-hollandvillage,20.1,252.0,291.3,84.1,184.2,41.8,1.0,0.104,0,0,0.0,191
+scene-1094,singapore-hollandvillage,19.6,126.3,212.9,39.7,61.2,15.5,1.0,0.531,0,12,0.0,187
+scene-1100,singapore-hollandvillage,19.6,1.1,0.0,0.5,1.0,7.9,1.0,1.0,0,0,0.0,1

@@ -1,0 +1,4 @@
+dataset,reference_name,tag,n,precision,recall,f1,tp,fp,fn,support,prevalence,baseline_f1,reference,scope,models_occlusion,independent_samples,delta_f1_vs_corridor,delta_precision_vs_corridor,delta_recall_vs_corridor,share_of_gap_closed_by_scope
+nuScenes,corridor (the scored tag),traffic_light_ahead,628,0.5401,0.8889,0.6719,128,109,16,144,0.2293,0.0,mapped fixture inside a 30 m x 8 m forward corridor,"within 30 m ahead, +/-4 m laterally",False,False,0.0,0.0,0.0,0.812
+nuScenes,"view (H2, same predictions)",traffic_light_ahead,628,0.8397,0.8964,0.8671,199,38,23,222,0.3535,0.0,mapped fixture projected into the camera frustum within 50 m,"visible in the camera, within 50 m",False,False,0.1952,0.2996,0.0075,0.812
+BDD100K,human box,traffic_light_present,450,0.8966,0.9286,0.9123,234,27,18,252,0.56,0.7179,human bounding box on a light that was visible,anywhere in the image,True,True,0.2404,0.3565,0.0397,0.812

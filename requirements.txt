@@ -1,0 +1,30 @@
+# Mac (M4, 16 GB) environment. Colab installs a subset inline in the notebook.
+# numpy<2 is MANDATORY: nuscenes-devkit breaks on NumPy 2.x.
+numpy<2
+
+# nuScenes
+nuscenes-devkit
+pyquaternion
+shapely
+
+# imaging / plotting
+matplotlib
+opencv-python
+Pillow
+
+# analysis
+pandas
+pyarrow          # parquet, for outputs/gt_all.parquet (Step C7)
+scikit-learn
+seaborn
+
+# app + config
+streamlit
+python-dotenv
+
+# data acquisition
+gdown            # Step F5: NuScenes-QA ships its annotations from a Google Drive FOLDER,
+                 # so plain HTTPS cannot enumerate it and the confirm-token dance needs a
+                 # client. Pure Python (PySocks, beautifulsoup4, filelock, soupsieve) --
+                 # `pip install --dry-run` confirmed it cannot disturb the numpy<2 pin
+                 # before it was installed, which is the check D-046 exists for.

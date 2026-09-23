@@ -1,0 +1,13 @@
+size_band_px,n_images,tag,precision,recall,f1,support,median_lit_px_subset,pct_lit_under_15px
+0-15,45,red_light_visible,0.6207,0.8182,0.7059,22,29.8,12.0
+0-15,45,yellow_light_visible,0.0714,0.5,0.125,2,29.8,12.0
+0-15,45,green_light_visible,0.92,0.7931,0.8519,29,29.8,12.0
+15-25,104,red_light_visible,0.5455,0.8571,0.6667,42,29.8,12.0
+15-25,104,yellow_light_visible,0.3958,0.6129,0.481,31,29.8,12.0
+15-25,104,green_light_visible,0.8857,0.8611,0.8732,72,29.8,12.0
+25-40,90,red_light_visible,0.7656,0.8596,0.8099,57,29.8,12.0
+25-40,90,yellow_light_visible,0.6364,0.6512,0.6437,43,29.8,12.0
+25-40,90,green_light_visible,0.9048,0.95,0.9268,60,29.8,12.0
+40-inf,135,red_light_visible,0.7711,0.7356,0.7529,87,29.8,12.0
+40-inf,135,yellow_light_visible,0.6324,0.5811,0.6056,74,29.8,12.0
+40-inf,135,green_light_visible,0.9412,0.8602,0.8989,93,29.8,12.0

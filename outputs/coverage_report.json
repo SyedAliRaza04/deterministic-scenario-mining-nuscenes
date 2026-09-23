@@ -1,0 +1,99 @@
+{
+  "n_keyframes": 34149,
+  "n_scenes": 850,
+  "brief_maneuvers": {
+    "highway_merge": {
+      "present": false,
+      "evidence": {
+        "max_ego_speed_kmh": 66.7,
+        "keyframes_at_or_above_70_kmh": 0,
+        "scenes_median_above_50_kmh": 6
+      },
+      "conclusion": "nuScenes contains no highway driving at all; the two 'highway' descriptions are scenes WAITING at a highway-like intersection at 0 km/h (F-042)"
+    },
+    "parallel_parking": {
+      "present": false,
+      "evidence": {
+        "descriptions_mentioning_parallel_parking": 0,
+        "sustained_reversing_runs": 3,
+        "max_heading_change_while_reversing_deg": 10.7,
+        "reversing_runs": [
+          {
+            "scene_name": "scene-0731",
+            "kf0": 15,
+            "kf1": 23,
+            "net_m": -2.418066913068379
+          },
+          {
+            "scene_name": "scene-0778",
+            "kf0": 20,
+            "kf1": 22,
+            "net_m": -0.7230077852168584
+          },
+          {
+            "scene_name": "scene-0945",
+            "kf0": 18,
+            "kf1": 20,
+            "net_m": -1.2416229907624834
+          }
+        ]
+      },
+      "conclusion": "3 reverses in 850 scenes; none has the S-curve heading profile of a creneau (F-042)"
+    },
+    "roundabout": {
+      "present": true,
+      "n_traversals": 2,
+      "share_of_scenes": 0.24,
+      "conclusion": "2 traversals in 850 scenes (F-028)"
+    }
+  },
+  "present_instead": {
+    "lane_change": {
+      "n_events": 75,
+      "n_scenes": 67,
+      "n_positive_frames": 551
+    },
+    "reversing": {
+      "n_events": 3
+    }
+  },
+  "tag_prevalence_pct": {
+    "is_going_straight": 83.654,
+    "is_turn_left": 7.813,
+    "is_turn_right": 8.293,
+    "is_u_turn": 0.24,
+    "is_cruising": 47.899,
+    "is_stationary": 18.993,
+    "is_accelerating": 16.396,
+    "is_decelerating": 16.712,
+    "lane_change": 1.614,
+    "on_drivable_area": 99.739,
+    "at_intersection": 25.825,
+    "on_lane": 73.475,
+    "on_ped_crossing": 2.89,
+    "on_walkway": 0.0,
+    "on_stop_line": 17.869,
+    "on_carpark": 0.067,
+    "ped_crossing_ahead": 37.884,
+    "stop_line_ahead": 58.848,
+    "intersection_ahead": 77.431,
+    "traffic_light_ahead": 16.797,
+    "has_pedestrian": 51.586,
+    "has_vehicle": 91.189,
+    "parked_vehicle": 58.687,
+    "moving_vehicle": 63.346,
+    "stopped_vehicle": 31.764,
+    "large_vehicle": 56.784,
+    "cyclist": 6.369,
+    "parked_bicycle": 8.071,
+    "construction_object": 29.351,
+    "traffic_cone": 19.588,
+    "barrier": 18.818,
+    "pedestrian_near": 10.39,
+    "vehicle_near": 35.963,
+    "lead_vehicle": 26.964,
+    "lead_braking": 1.892,
+    "cut_in": 2.428,
+    "pedestrian_crossing_path": 3.078
+  }
+}

@@ -1,0 +1,43 @@
+# --- secrets ---
+.env
+
+# --- python ---
+venv/
+venv-mlx/
+venv-sim/
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# --- data: never committed. See README.md for how to obtain and place it. ---
+data/*
+!data/.gitkeep
+*.tgz
+*.zip
+*.tar
+*.tar.*
+*.bz2
+
+# --- outputs ---
+# Figures, scored tables and raw model output ARE published, so that every number in
+# the write-up can be recomputed without a GPU. The parquet caches and the inference
+# bundles are not: they are large and both are rebuilt by `src.groundtruth.build_stage_c`
+# and `src.data.build_colab_bundle`.
+outputs/*
+!outputs/.gitkeep
+!outputs/*.png
+!outputs/*.csv
+!outputs/*.json
+!outputs/*.jsonl
+!outputs/results/
+outputs/results/pilot/
+outputs/*.parquet
+outputs/*_bundle*
+outputs/xosc/
+outputs/bev_symbolic*.jsonl
+outputs/scenario_descriptions.jsonl
+outputs/*.log
+
+# --- macOS ---
+.DS_Store

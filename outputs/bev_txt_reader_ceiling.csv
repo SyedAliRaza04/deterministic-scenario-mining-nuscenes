@@ -1,0 +1,6 @@
+tag,ceiling,n_positive,reader_true,model_true,reader_f1,model_f1
+on_stop_line,exact,166,166,317,1.0,0.6832
+on_ped_crossing,exact,118,118,123,1.0,0.8631
+traffic_light_ahead,exact,144,145,180,0.9965,0.6852
+stop_line_ahead,lower_bound,471,460,330,0.8335,0.7491
+ped_crossing_ahead,lower_bound,339,406,86,0.8564,0.3953

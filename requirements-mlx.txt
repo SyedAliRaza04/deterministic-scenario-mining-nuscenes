@@ -1,0 +1,19 @@
+# SECOND environment, ./venv-mlx — VLM inference only (Step E1).
+#
+# Kept separate because mlx-vlm requires numpy>=2 while nuscenes-devkit requires
+# numpy<2. Installing this into ./venv breaks every Stage C module. Caught with
+# `pip install --dry-run` before installing, which is the only reason it was caught.
+#
+#   python3 -m venv venv-mlx && ./venv-mlx/bin/pip install -r requirements-mlx.txt
+#
+# src/vlm.py and src/prompts.py import no numpy, so BOTH environments can use them.
+# Anything touching the devkit, parquet or shapely runs in ./venv.
+mlx==0.32.2
+mlx-audio==0.5.1
+mlx-metal==0.32.2
+mlx-vlm==0.6.17
+numpy==2.5.2
+pillow==12.3.0
+transformers==5.16.1
+# mlx-vlm 0.6.17 does not declare jinja2, but apply_chat_template needs it.
+Jinja2==3.1.6

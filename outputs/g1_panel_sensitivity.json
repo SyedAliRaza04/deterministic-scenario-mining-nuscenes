@@ -1,0 +1,50 @@
+{
+  "0.0": {
+    "min_panel_s": 0.0,
+    "n_panels": 4115,
+    "panels_per_scene_median": 5.0,
+    "panels_per_scene_max": 14,
+    "min_keyframes_in_any_panel": 1,
+    "label_pairs_lost_pct": 0.0
+  },
+  "0.5": {
+    "min_panel_s": 0.5,
+    "n_panels": 3351,
+    "panels_per_scene_median": 4.0,
+    "panels_per_scene_max": 10,
+    "min_keyframes_in_any_panel": 2,
+    "label_pairs_lost_pct": 10.6
+  },
+  "1.0": {
+    "min_panel_s": 1.0,
+    "n_panels": 3051,
+    "panels_per_scene_median": 4.0,
+    "panels_per_scene_max": 8,
+    "min_keyframes_in_any_panel": 3,
+    "label_pairs_lost_pct": 15.74
+  },
+  "1.5": {
+    "min_panel_s": 1.5,
+    "n_panels": 2705,
+    "panels_per_scene_median": 3.0,
+    "panels_per_scene_max": 7,
+    "min_keyframes_in_any_panel": 4,
+    "label_pairs_lost_pct": 22.18
+  },
+  "2.0": {
+    "min_panel_s": 2.0,
+    "n_panels": 2380,
+    "panels_per_scene_median": 3.0,
+    "panels_per_scene_max": 6,
+    "min_keyframes_in_any_panel": 5,
+    "label_pairs_lost_pct": 29.13
+  },
+  "3.0": {
+    "min_panel_s": 3.0,
+    "n_panels": 1841,
+    "panels_per_scene_median": 2.0,
+    "panels_per_scene_max": 4,
+    "min_keyframes_in_any_panel": 7,
+    "label_pairs_lost_pct": 41.09
+  }
+}

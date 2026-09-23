@@ -1,0 +1,46 @@
+{
+  "schema_version": "G3.1",
+  "abstraction_level": "logical (Menzel) - every parameter is a [min, max] range",
+  "scope_warning": "actors are 360-degree annotation facts, NOT CAM_FRONT facts. Only 28.46% of nuScenes annotations fall in the front camera and 444 of 850 scenes contain a class it never sees. `n_in_camera` is provided per actor so the front-camera subset stays visible (R25/F-025).",
+  "fields": {
+    "scenography.lighting": {
+      "source": "log.logfile local capture hour, split at 18:00",
+      "pegasus_layer": 5,
+      "validation": "100.0% agreement with the human 'night' keyword on 850/850 scenes"
+    },
+    "scenography.road.*": {
+      "source": "map_context_trainval.parquet (C3)",
+      "pegasus_layer": 1
+    },
+    "scenography.actors[]": {
+      "source": "groundtruth.scene_agent_tracks - the raw 360-degree annotation set",
+      "pegasus_layer": 4,
+      "fields": [
+        "category",
+        "n_instances",
+        "n_in_camera",
+        "range_m",
+        "speed_mps"
+      ]
+    },
+    "parameters.ego_speed_mps": {
+      "source": "ego_kinematics_trainval.parquet (C1)"
+    },
+    "parameters.road_extent_m": {
+      "source": "bounding-box diagonal of the ego trajectory",
+      "caveat": "a PROXY for the slide's 'road range size'. It measures how far the ego travelled, not how large the road is, and collapses to ~0 on the 65 scenes where the ego never moves."
+    },
+    "parameters.pedestrian_speed_mps": {
+      "source": "scene_agent_tracks, human.pedestrian.* only",
+      "bound": "values above 3.0 m/s excluded and counted, not clipped (R2/R11)"
+    },
+    "timeline[]": {
+      "source": "storyboard_panels.parquet (G1)"
+    }
+  },
+  "absent_fields": {
+    "lane_count": "The slide names '3 lines [lanes] road'. No cached table carries a lane COUNT. It is derivable from the map's lane STRtree, but `road_block` - the layer that would carry it - is DEGENERATE ON TWO MAPS: all 676 singapore-queenstown records and all 387 singapore-hollandvillage records point at a single whole-map polygon (7,748 and 4,851 nodes). That is 200 of 850 scenes, 23.5%. D-019/F-020 recorded only queenstown.",
+    "weather": "19.4% of human descriptions say rain; nuScenes has no weather annotation and no deterministic proxy was found. PEGASUS Layer 5 is therefore PARTLY covered by `lighting`, not covered.",
+    "pegasus_layer_6": "V2X / digital information is absent from the dataset entirely."
+  }
+}

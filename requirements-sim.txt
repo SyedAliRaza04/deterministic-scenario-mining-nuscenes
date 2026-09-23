@@ -1,0 +1,21 @@
+# Third environment, for Step G4 only: the MetaDrive simulator and ScenarioNet.
+# Separate from ./venv (numpy<2 pinned for nuscenes-devkit) and ./venv-mlx (numpy>=2).
+#
+#   ~/.local/bin/uv venv --python 3.11 ./venv-sim
+#   ~/.local/bin/uv pip install --python ./venv-sim/bin/python -r requirements-sim.txt
+#   git -C data/sim clone https://github.com/metadriverse/scenarionet.git   # commit d4acdb5
+#   ~/.local/bin/uv pip install --python ./venv-sim/bin/python -e data/sim/scenarionet
+#   ./venv-sim/bin/python -m metadrive.pull_asset
+#   ./venv-sim/bin/python -m scenarionet.convert_nuscenes -d data/sim/db/nuscenes_mini \
+#       --split v1.0-mini --dataroot data/nuscenes --overwrite --num_workers 1
+#   ./venv-sim/bin/python -m src.sim
+#
+# Python 3.11, not 3.12: every metadrive-simulator release after 0.2.6.0 declares
+# requires_python <3.12, so under 3.12 the resolver falls back to 0.2.6.0 and its dead
+# `gym` dependency. setuptools <81 because ScenarioNet imports pkg_resources.
+metadrive-simulator==0.4.3
+setuptools==80.9.0
+nuscenes-devkit==1.2.0
+pandas==3.0.6
+matplotlib==3.11.2
+shapely==2.0.7
